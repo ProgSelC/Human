@@ -17,30 +17,32 @@ public class Main {
 				new Student("Pupkin-", "V", 21, 'f') };
 
 		// В цикле добавляем студентов в группу, последний - лишний
-		try {
-			for (Student stud : st) {
-				gr.addStudent(stud);
-			}
-		} catch (GroupIsFullException e) {
-			System.out.println("Error: " + e);
-		} catch (DuplicationException e){
-			System.out.println("Error: " + e);
+
+		for (Student stud : st) {
+			addStud(gr, stud);
 		}
-		
+
 		gr.listStudents();
-		
+
 		// 5-го студента исключаем
 		gr.excludeStudent(st[5].getSirname());
 		gr.listStudents();
-		
+
 		// Пытаемся дабавить студента, который уже есть в группе
+		addStud(gr, st[1]);
+
+		// Появилось вакантное место, можем принять студента
+		addStud(gr, st[10]);
+		gr.listStudents();
+	}
+
+	static void addStud(Group grp, Student stud) {
 		try {
-			gr.addStudent(st[1]);
+			grp.addStudent(stud);
 		} catch (GroupIsFullException e) {
 			System.out.println("Error: " + e);
-		} catch (DuplicationException e){
+		} catch (DuplicationException e) {
 			System.out.println("Error: " + e);
 		}
 	}
-
 }
