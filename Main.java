@@ -23,9 +23,11 @@ public class Main {
 		}
 
 		gr.listStudents();
+		
+		gr.findStudent("Pupkin1");
 
 		// 5-го студента исключаем
-		gr.excludeStudent(st[5].getSirname());
+		gr.excludeStudent(st[5].getRecbookNum());
 		gr.listStudents();
 
 		// Пытаемся дабавить студента, который уже есть в группе
