@@ -9,14 +9,15 @@ public class Group {
 		super();
 		this.groupNum = groupNum;
 	}
-	
-	public String getGroupNum(){
+
+	public String getGroupNum() {
 		return this.groupNum;
 	}
 
-	public void addStudent(Student st) throws GroupIsFullException, DuplicationException {
+	public void addStudent(Student st) throws GroupIsFullException,
+			DuplicationException {
 		boolean vacant = false;
-		if (findStudent(st.getSirname()) == null) {
+		if (st.getRecbookNum() == 0) {
 			for (int i = 0; i < this.students.length; i++) {
 				if (this.students[i] == null) {
 					this.students[i] = st;
@@ -34,26 +35,25 @@ public class Group {
 		}
 	}
 
-	public Student findStudent(String sirname) {
-		Student st = null;
+	public void findStudent(String sirname) {
 		for (int i = 0; i < this.students.length; i++) {
 			if (this.students[i] != null
 					&& this.students[i].getSirname() == sirname) {
-				st = this.students[i];
-				break;
+				System.out.println(this.students[i].toString());
 			}
 		}
-		return st;
 	}
 
-	public void excludeStudent(String sirname) {
+	public void excludeStudent(int rbNum) {
 		boolean stFound = false;
 		for (int i = 0; i < this.students.length; i++) {
 			if (this.students[i] != null
-					&& this.students[i].getSirname() == sirname) {
+					&& this.students[i].getRecbookNum() == rbNum) {
+				this.students[i].setRecbookNum(0);
+				System.out.println("Student " + this.students[i].getSirname()
+						+ " excluded");
 				this.students[i] = null;
 				stFound = true;
-				System.out.println("Student " + sirname + " excluded");
 				break;
 			}
 		}
@@ -66,7 +66,8 @@ public class Group {
 		int index = 0;
 		for (int i = 0; i < this.students.length; i++) {
 			if (this.students[i] != null) {
-				System.out.println(++index + ") " + this.students[i].toString());
+				System.out
+						.println(++index + ") " + this.students[i].toString());
 			}
 		}
 		System.out.println();
