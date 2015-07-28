@@ -1,12 +1,17 @@
 package selcprj;
 
 public class Group {
-	public String groupNum;
+	private static int recbookNum = 0;
+	private String groupNum;
 	Student[] students = new Student[10];
 
 	public Group(String groupNum) {
 		super();
 		this.groupNum = groupNum;
+	}
+	
+	public String getGroupNum(){
+		return this.groupNum;
 	}
 
 	public void addStudent(Student st) throws GroupIsFullException, DuplicationException {
@@ -16,6 +21,7 @@ public class Group {
 				if (this.students[i] == null) {
 					this.students[i] = st;
 					st.setGroup(this);
+					st.setRecbookNum(++Group.recbookNum);
 					vacant = true;
 					break;
 				}
