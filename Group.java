@@ -66,8 +66,7 @@ public class Group {
 		int index = 0;
 		for (int i = 0; i < this.students.length; i++) {
 			if (this.students[i] != null) {
-				System.out
-						.println(++index + ") " + this.students[i].toString());
+				System.out.println(++index + ") " + this.students[i].toString());
 			}
 		}
 		System.out.println();
