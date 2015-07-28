@@ -3,8 +3,10 @@ package selcprj;
 public class Student extends Human {
 	private Group group;
 	private int recbookNum;
+	
 	public Student(String name, String sirname, int age, char gender) {
 		super(name, sirname, age, gender);
+		recbookNum = 0;
 	}
 
 	public void setGroup(Group group) {
